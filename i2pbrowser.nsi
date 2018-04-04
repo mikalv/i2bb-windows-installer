@@ -1,4 +1,4 @@
-;NSIS Installer for Tor Browser Bundle
+;NSIS Installer for I2P Browser Bundle
 ;Written by Moritz Bartl
 ;released under Public Domain
 
@@ -10,14 +10,14 @@
 ;--------------------------------
 ;General
  
-  ; location of Tor Browser bundle to put into installer
-  !define TBBSOURCE ".\Tor Browser\"  
+  ; location of I2P Browser bundle to put into installer
+  !define TBBSOURCE ".\I2P Browser\"  
 
-  Name "Tor Browser"
-  OutFile "torbrowser-install.exe"
+  Name "I2P Browser"
+  OutFile "i2pbrowser-install.exe"
 
   ;Default installation folder
-  InstallDir "$DESKTOP\Tor Browser"
+  InstallDir "$DESKTOP\I2P Browser"
   
   ;Best (but slowest) compression
   SetCompressor /SOLID lzma
@@ -29,14 +29,14 @@
 ;--------------------------------
 ;Interface Configuration
 
-  !define MUI_ICON   "torbrowser.ico"
+  !define MUI_ICON   "i2pbrowser.ico"
   !define MUI_ABORTWARNING
 
 ;--------------------------------
 ;Modern UI settings
   !define MUI_FINISHPAGE_NOREBOOTSUPPORT     ; we don't require a reboot
   !define MUI_FINISHPAGE_RUN
-  !define MUI_FINISHPAGE_RUN_FUNCTION "StartTorBrowser"
+  !define MUI_FINISHPAGE_RUN_FUNCTION "StartI2PBrowser"
   !define MUI_FINISHPAGE_SHOWREADME ; misuse for option to create shortcut; less ugly than MUI_PAGE_COMPONENTS
   !define MUI_FINISHPAGE_SHOWREADME_TEXT "&Add Start Menu && Desktop shortcuts"
   !define MUI_FINISHPAGE_SHOWREADME_FUNCTION "CreateShortCuts"
@@ -125,19 +125,19 @@
 ;--------------------------------
 ;Installer Sections
 
-Section "Tor Browser Bundle" SecTBB
+Section "I2P Browser Bundle" SecTBB
 
   SetOutPath "$INSTDIR"
   File /r "${TBBSOURCE}\*.*"
   SetOutPath "$INSTDIR\Browser"
-  CreateShortCut "$INSTDIR\Start Tor Browser.lnk" "$INSTDIR\Browser\firefox.exe"
+  CreateShortCut "$INSTDIR\Start I2P Browser.lnk" "$INSTDIR\Browser\firefox.exe"
 
 SectionEnd
 
 Function CreateShortcuts
 
-  CreateShortCut "$SMPROGRAMS\Start Tor Browser.lnk" "$INSTDIR\Browser\firefox.exe" 
-  CreateShortCut "$DESKTOP\Start Tor Browser.lnk" "$INSTDIR\Browser\firefox.exe"
+  CreateShortCut "$SMPROGRAMS\Start I2P Browser.lnk" "$INSTDIR\Browser\firefox.exe" 
+  CreateShortCut "$DESKTOP\Start I2P Browser.lnk" "$INSTDIR\Browser\firefox.exe"
 
 FunctionEnd
 ;--------------------------------
@@ -154,14 +154,14 @@ FunctionEnd
 
 Function CheckIfTargetDirectoryExists
 ${If} ${FileExists} "$INSTDIR\*.*"
- MessageBox MB_YESNO "The destination directory already exists. You can try to upgrade the Tor Browser Bundle, but if you run into any problems, use a new directory instead. Continue?" IDYES NoAbort
+ MessageBox MB_YESNO "The destination directory already exists. You can try to upgrade the I2P Browser Bundle, but if you run into any problems, use a new directory instead. Continue?" IDYES NoAbort
    Abort
  NoAbort:
 ${EndIf}
 FunctionEnd
 
 
-Function StartTorBrowser
-ExecShell "open" "$INSTDIR/Start Tor Browser.lnk"
+Function StartI2PBrowser
+ExecShell "open" "$INSTDIR/Start I2P Browser.lnk"
 FunctionEnd
 
