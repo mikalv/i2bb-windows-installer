@@ -15,20 +15,8 @@
   ; location of I2P Browser bundle to put into installer
   !define TBBSOURCE ".\I2P Browser\"
 
-  !if "${CHANNEL}" == "release"
-    !define CHANNEL_NAME ""
-    !define CHANNEL_ICON "i2pbrowser.ico"
-  !endif
-
-  !if "${CHANNEL}" == "nightly"
-    !define CHANNEL_NAME " Nightly"
-    !define CHANNEL_ICON "i2pbrowser.ico"
-  !endif
-
-  !if "${CHANNEL}" == "alpha"
-    !define CHANNEL_NAME " Alpha"
-    !define CHANNEL_ICON "i2pbrowser.ico"
-  !endif
+  !define CHANNEL_NAME " Alpha"
+  !define CHANNEL_ICON "i2pbrowser.ico"
 
   Name "I2P Browser${CHANNEL_NAME}"
   OutFile "i2pbrowser-install.exe"
